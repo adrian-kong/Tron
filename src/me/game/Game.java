@@ -1,6 +1,8 @@
 package me.game;
 
 import me.game.board.Board;
+import me.game.utils.TimerUtil;
+
 
 /**
  * @author Adrian
@@ -10,6 +12,7 @@ public class Game {
 
     public static Game INTANCE = new Game();
     private final Board board = new Board();
+    private final TimerUtil gameTimer = new TimerUtil();
 
     public static Game get() {
         return INTANCE;
@@ -23,7 +26,8 @@ public class Game {
     }
 
     public void update() {
-        board.update();
+        board.preUpdate();
+            board.postUpdate();
     }
 
     public void render() {

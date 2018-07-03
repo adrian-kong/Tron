@@ -16,11 +16,15 @@ public abstract class EntityPlayer implements Entity {
     }
 
     @Override
-    public void update() {
+    public void preUpdate() {
     }
 
     @Override
-    public void render() {
+    public void postUpdate() {
+    }
+
+    @Override
+    public void renderBody() {
     }
 
     public Vector2 getPosition() {

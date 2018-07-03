@@ -64,7 +64,7 @@ public class Main {
 
     private void loop() {
         GL.createCapabilities();
-        glClearColor(0, 0, 0, 0);
+        glClearColor(0.15f, 0.15f, 0.15f, 0);
         while (!glfwWindowShouldClose(window)) {
             glMatrixMode(GL_MODELVIEW);
             glLoadIdentity();

@@ -36,19 +36,24 @@ public class Board {
         entities.add(new PlayerOne(new Vector2(0, size / 2)));
     }
 
-    public void update() {
+    public void preUpdate() {
+        entities.forEach(EntityPlayer::preUpdate);
+    }
+
+    public void postUpdate() {
         entities.forEach(a -> {
             Optional<Vector2> vec = findTile(a.getPosition());
             vec.ifPresent(b -> b.setPreviousEntity(a));
-            if (!vec.isPresent())
+            if (!vec.isPresent()) {
                 Game.get().stop();
+            }
         });
-        entities.forEach(Entity::update);
+        entities.forEach(Entity::postUpdate);
     }
 
     public void render() {
-        boardTiles.forEach(a -> a.getPreviousEntity().ifPresent(b -> b.render()));
-        entities.forEach(Entity::render);
+        boardTiles.forEach(a -> a.getPreviousEntity().ifPresent(b -> b.renderTrail(a)));
+        entities.forEach(Entity::renderBody);
     }
 
     public Optional<Vector2> findTile(Vector2 pos) {

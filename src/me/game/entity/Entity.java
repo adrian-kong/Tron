@@ -1,13 +1,18 @@
 package me.game.entity;
 
+import me.game.utils.Vector2;
+
 /**
  * @author Adrian
  * @since 19/06/18
  */
 public interface Entity {
 
-    void update();
+    void preUpdate();
 
-    void render();
+    void postUpdate();
 
+    void renderBody();
+
+    void renderTrail(Vector2 pos);
 }
