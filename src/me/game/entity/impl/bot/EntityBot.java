@@ -8,10 +8,6 @@ import me.game.utils.Vector2;
 import java.util.ArrayList;
 import java.util.Optional;
 
-/**
- * @author Adrian
- * @since
- */
 public class EntityBot implements IEntity {
 
     protected Vector2 position;

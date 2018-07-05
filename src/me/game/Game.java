@@ -3,10 +3,6 @@ package me.game;
 import me.game.board.Board;
 import me.game.utils.TimerUtil;
 
-/**
- * @author Adrian
- * @since 19/06/18
- */
 public class Game {
 
     public static Game INTANCE = new Game();

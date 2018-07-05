@@ -9,10 +9,6 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * @author Adrian
- * @since
- */
 public class Calculation {
 
     public Queue<Vector2> queue = new ConcurrentLinkedDeque();

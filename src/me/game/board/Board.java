@@ -12,10 +12,6 @@ import java.util.Optional;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-/**
- * @author Adrian
- * @since 19/06/18
- */
 public class Board {
 
     private ArrayList<EntityPlayer> entities;

@@ -7,10 +7,6 @@ import me.game.entity.impl.player.EntityPlayer;
 
 import java.util.Optional;
 
-/**
- * @author Adrian
- * @since 19/06/18
- */
 public class Vector2 {
 
     private int posX;

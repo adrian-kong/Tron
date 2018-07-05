@@ -2,10 +2,6 @@ package me.game.entity.impl.bot;
 
 import me.game.utils.Vector2;
 
-/**
- * @author Adrian
- * @since
- */
 public class Node {
 
     private int points;

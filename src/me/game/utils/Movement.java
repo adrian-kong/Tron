@@ -4,10 +4,6 @@ import me.game.entity.impl.player.EntityPlayer;
 import me.game.utils.Facing;
 import me.game.utils.InputHandler;
 
-/**
- * @author Adrian
- * @since 05/07/18
- */
 public class Movement {
 
     private int up, down, left, right;

@@ -8,10 +8,6 @@ import static me.game.utils.RenderUtil.*;
 
 import java.awt.*;
 
-/**
- * @author Adrian
- * @since 19/06/18
- */
 public abstract class EntityPlayer implements IEntity {
 
     protected Vector2 position;

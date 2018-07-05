@@ -6,10 +6,6 @@ import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
-/**
- * @author Adrian
- * @since 19/06/18
- */
 public class RenderUtil {
 
     public static void drawTile(Vector2 pos, Color colour) {
