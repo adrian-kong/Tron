@@ -1,5 +1,7 @@
 package me.game.utils;
 
+import me.game.Game;
+
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -11,7 +13,8 @@ import static org.lwjgl.opengl.GL11.*;
 public class RenderUtil {
 
     public static void drawTile(Vector2 pos, Color colour) {
-        drawQuad(pos.getPosX() * 8, pos.getPosY() * 8, pos.getPosX() * 8 + 8, pos.getPosY() * 8 + 8, colour);
+        int size = Game.get().getBoard().bitSize;
+        drawQuad(pos.getPosX() * size, pos.getPosY() * size, pos.getPosX() * size + size, pos.getPosY() * size + size, colour);
     }
 
     public static void drawQuad(int x1, int y1, float x2, float y2, Color colour) {

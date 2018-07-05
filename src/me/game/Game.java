@@ -27,7 +27,7 @@ public class Game {
     }
 
     public void stop() {
-        getBoard().reset();
+        getBoard().stop();
     }
 
     public void update() {

@@ -2,10 +2,12 @@ package me.game.utils;
 
 import me.game.Game;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Adrian
@@ -14,22 +16,22 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 public class Calculation {
 
     public Queue<Vector2> queue = new ConcurrentLinkedDeque();
+    public List<Vector2> checked = new CopyOnWriteArrayList();
+    public Vector2 first;
 
     public void floodFill(Vector2 starting) {
-        new Thread() {
-            @Override
-            public void run() {
-                queue.add(starting);
-                while (!queue.isEmpty()) {
-                    Vector2 first = queue.remove();
-                    for (Facing facing : Facing.values()) {
-                        Optional<Vector2> temp = Game.get().getBoard().findTile(new Vector2(first.getPosX() + facing.dX, first.getPosY() + facing.dY));
-                        if (temp.isPresent() && !temp.get().getPreviousEntity().isPresent() && !queue.contains(temp.get())) {
-                            queue.add(temp.get());
-                        }
-                    }
+        queue.add(starting);
+        while (!queue.isEmpty()) {
+            first = queue.remove();
+            checked.add(first);
+            for (Facing facing : Facing.values()) {
+                Optional<Vector2> temp = Game.get().getBoard().findTile(new Vector2(first.getPosX() + facing.dX, first.getPosY() + facing.dY));
+                if (temp.isPresent() && !temp.get().getPreviousEntity().isPresent() && !queue.contains(temp.get()) && !checked.contains(temp.get())) {
+                    queue.add(temp.get());
                 }
             }
-        }.start();
+        }
+        checked.remove(starting);
+        System.out.println(checked.size());
     }
 }
