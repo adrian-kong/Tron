@@ -1,7 +1,7 @@
 package me.game.board;
 
 import me.game.Game;
-import me.game.entity.Entity;
+import me.game.entity.IEntity;
 import me.game.entity.impl.player.EntityPlayer;
 import me.game.entity.impl.player.PlayerOne;
 import me.game.utils.Vector2;
@@ -17,7 +17,7 @@ public class Board {
 
     private ArrayList<EntityPlayer> entities;
     private ArrayList<Vector2> boardTiles;
-    private final int size = 800 / 10;
+    private final int size = 800 / 8;
 
     public Board() {
         reset();
@@ -41,6 +41,7 @@ public class Board {
     }
 
     public void postUpdate() {
+        entities.forEach(IEntity::postUpdate);
         entities.forEach(a -> {
             Optional<Vector2> vec = findTile(a.getPosition());
             vec.ifPresent(b -> b.setPreviousEntity(a));
@@ -48,12 +49,11 @@ public class Board {
                 Game.get().stop();
             }
         });
-        entities.forEach(Entity::postUpdate);
     }
 
     public void render() {
         boardTiles.forEach(a -> a.getPreviousEntity().ifPresent(b -> b.renderTrail(a)));
-        entities.forEach(Entity::renderBody);
+        entities.forEach(IEntity::renderBody);
     }
 
     public Optional<Vector2> findTile(Vector2 pos) {

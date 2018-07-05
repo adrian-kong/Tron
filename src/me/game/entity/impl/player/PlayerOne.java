@@ -3,8 +3,7 @@ package me.game.entity.impl.player;
 import static me.game.utils.RenderUtil.*;
 import static org.lwjgl.glfw.GLFW.*;
 
-import me.game.utils.Facing;
-import me.game.utils.InputHandler;
+import me.game.utils.Movement;
 import me.game.utils.Vector2;
 
 import java.awt.*;
@@ -15,30 +14,16 @@ import java.awt.*;
  */
 public class PlayerOne extends EntityPlayer {
 
+    private Movement movement = new Movement(this, GLFW_KEY_W, GLFW_KEY_S, GLFW_KEY_A, GLFW_KEY_D);
+
     public PlayerOne(Vector2 pos) {
         super(pos);
     }
 
-    private Facing direction = Facing.STATIC;
-
     @Override
     public void preUpdate() {
         super.preUpdate();
-        if (InputHandler.keyDown(GLFW_KEY_W)) {
-            direction = Facing.UP;
-        }
-
-        if (InputHandler.keyDown(GLFW_KEY_S)) {
-            direction = Facing.DOWN;
-        }
-
-        if (InputHandler.keyDown(GLFW_KEY_A)) {
-            direction = Facing.LEFT;
-        }
-
-        if (InputHandler.keyDown(GLFW_KEY_D)) {
-            direction = Facing.RIGHT;
-        }
+        movement.update();
     }
 
     @Override
@@ -46,13 +31,13 @@ public class PlayerOne extends EntityPlayer {
         super.postUpdate();
         position.addX(direction.dX);
         position.addY(direction.dY);
+        prevDirection = direction;
     }
 
     @Override
     public void renderBody() {
         super.renderBody();
         drawTile(position, new Color(59, 59, 152));
-
     }
 
     @Override

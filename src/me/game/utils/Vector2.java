@@ -1,7 +1,8 @@
 package me.game.utils;
 
 import me.game.Game;
-import me.game.entity.Entity;
+import me.game.entity.IEntity;
+import me.game.entity.impl.player.EntityPlayer;
 
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ public class Vector2 {
     private int posX;
     private int posY;
 
-    private Optional<Entity> previousEntity = Optional.empty();
+    private Optional<IEntity> previousEntity = Optional.empty();
 
     public Vector2(int posX, int posY) {
         this.posX = posX;
@@ -29,7 +30,7 @@ public class Vector2 {
         return posY;
     }
 
-    public Optional<Entity> getPreviousEntity() {
+    public Optional<IEntity> getPreviousEntity() {
         return previousEntity;
     }
 
@@ -41,8 +42,11 @@ public class Vector2 {
         this.posY += posY;
     }
 
-    public void setPreviousEntity(Entity previousEntity) {
-        this.previousEntity.ifPresent(a -> Game.get().stop());
+    public void setPreviousEntity(IEntity previousEntity) {
+        this.previousEntity.ifPresent(a -> {
+            if (!(a instanceof EntityPlayer && ((EntityPlayer) a).getDirection() == Facing.STATIC))
+                Game.get().stop();
+        });
         this.previousEntity = Optional.of(previousEntity);
     }
 

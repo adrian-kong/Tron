@@ -58,8 +58,7 @@ public class Main {
         glfwMakeContextCurrent(window);
         glfwSwapInterval(1);
         glfwShowWindow(window);
-
-        game = new Game();
+        game = Game.get();
     }
 
     private void loop() {

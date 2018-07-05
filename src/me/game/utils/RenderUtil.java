@@ -11,7 +11,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class RenderUtil {
 
     public static void drawTile(Vector2 pos, Color colour) {
-        drawQuad(pos.getPosX() * 10, pos.getPosY() * 10, pos.getPosX() * 10 + 10, pos.getPosY() * 10 + 10, colour);
+        drawQuad(pos.getPosX() * 8, pos.getPosY() * 8, pos.getPosX() * 8 + 8, pos.getPosY() * 8 + 8, colour);
     }
 
     public static void drawQuad(int x1, int y1, float x2, float y2, Color colour) {
